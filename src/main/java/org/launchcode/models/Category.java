@@ -1,10 +1,10 @@
 package org.launchcode.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * created by me on 4/6/2017 for stuff.
@@ -17,8 +17,13 @@ public class Category {
     private Integer id;
 
     @NotNull
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 25)
     private String name;
+
+    //one category to many cheeses
+    @OneToMany
+    @JoinColumn(name = "category_id")
+    private List<Cheese> cheeses = new ArrayList<>();
 
     public Category(){
 
